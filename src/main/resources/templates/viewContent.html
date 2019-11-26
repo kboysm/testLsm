@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<!--부트스트랩 css 추가-->
+<link rel="stylesheet" href="/css/lib/bootstrap.min.css">
+</head>
+<body>
+
+	<h2>게시글 상세</h2>
+
+	
+	<div class="container">
+		<div class="form-group">
+			<label>글번호</label>
+			<p th:text= "${viewContent.idx}"></p>
+		</div>
+		<div class="form-group">
+			<label>제목</label>
+			<p th:text= "${viewContent.title}"></p>
+		</div>
+		<div class="form-group">
+			<label>작성자</label>
+			<p th:text= "${viewContent.writer}"></p>
+		</div>
+		<div class="form-group">
+			<label>작성날짜</label>
+			<p th:text= "${#dates.format(viewContent.reg_date, 'yyyy-MM-dd HH:mm')}"></p>
+		</div>
+		<div class="form-group">
+			<label>내용</label>
+			<p th:text= "${viewContent.content}"></p>
+		</div>
+		<div class="form-group">
+			<label>조회수</label>
+			<p th:text= "${viewContent.view_cnt}"></p>
+		</div>
+
+		<a th:href="@{/updateContent(idx=${viewContent.idx})}"><button type="button">수정</button></a>
+		<a th:href="@{/delete(idx=${viewContent.idx})}"><button type="button">삭제</button></a>
+		<button type="button" >목록</button>
+
+
+
+	</div>
+<th:block layout:fragment="js/board/my.js"></th:block>
+
+
+	<!--부트스트랩 js, jquery 추가-->
+	<script src="/js/lib/jquery.min.js"></script>
+	<script src="/js/lib/bootstrap.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Thymeleaf 예제</title>
+    <!--부트스트랩 css 추가-->
+    <link rel="stylesheet" href="/css/lib/bootstrap.min.css">
+</head>
+<body>
+</head>
+<body>
+
+    <div class="jumbotron">
+        <h2>스프링 부트 게시판</h2>
+    </div>
+    
+	<th:block layout:fragment="search">
+		<form action="#" id="searchform-header" class="searchform js__toggle active pull-right">
+			<input type="search" placeholder="Search..." class="input-search">
+			<button class="mdi mdi-magnify button-search" type="submit">
+				<i class="fa fa-search" aria-hidden="true">검색</i>
+			</button>
+		</form>
+	</th:block>
+    
+    <table class="table">
+        <tr>
+            <th>글 번호</th>
+            <th>글 제목</th>
+            <th>글쓴이</th>
+            <th>작성일</th>
+            <th>조회수</th>
+        </tr>
+        <tr th:each="ListBoardVO : ${list}" >
+            <td th:text="${ListBoardVO.idx}"></td>
+            <td >
+            <a th:href="@{/viewContent(idx=${ListBoardVO.idx})}" th:text="${ListBoardVO.title}"></a>
+            </td>
+            <td th:text="${ListBoardVO.writer}"></td>
+            <td th:text="${#dates.format(ListBoardVO.reg_date, 'yyyy-MM-dd HH:mm')}" ></td>
+            <td th:text="${ListBoardVO.view_cnt}"></td>
+            </tr>
+    </table>
+
+    <nav style="text-align: center;">
+        <ul class="pagination">
+            <li class="disabled">
+                <a href="#" aria-label="previous">
+                    <span aria-hidden="true">이전</span>
+                </a>
+            </li>
+            <li class="disabled">
+                <a href="#" aria-label="next">
+                    <span aria-hidden="true">&lt;</span>
+                </a>
+            </li>
+            <li class="active"><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li>
+                <a href="#" aria-label="Next">
+                    <span aria-hidden="true">&gt;</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" aria-label="이후">
+                    <span aria-hidden="true">이후</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <!--부트스트랩 js, jquery 추가-->
+    <script src="/js/lib/jquery.min.js"></script>
+    <script src="/js/lib/bootstrap.min.js"></script>
+   
+</body>
+</html>
